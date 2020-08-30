@@ -1,10 +1,10 @@
 import React from "react";
 import "./icons.css";
 
-const Star = () =>
+const Star = ({className = "star"}) =>
 { 
     return(
-     <svg className= "star" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     <svg className= {className} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="23.354px" height="23.354px" viewBox="0 0 46.354 46.354" style={{ enableBackground: "new 0 0  46.354, 46.354" }}
 	 xmlSpace="preserve" >
 <g>
@@ -56,8 +56,8 @@ const Bin = () =>{ return (
     }
 
 
-const Like = () => {return (  
-<svg className= "like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+const Like = ({className}) => {return (  
+<svg className= {className} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 391.837 391.837" style={{height:"22.7px", width: "22.7px",enableBackground:"new 0 0 391.837 391.837;"}} space="preserve">
 <g>
 	<path d="M285.257,35.528c58.743,0.286,106.294,47.836,106.58,106.58

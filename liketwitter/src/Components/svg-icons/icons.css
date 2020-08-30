@@ -1,5 +1,11 @@
 .star{
-    fill : yellow
+    fill : rgb(0, 0, 0);
+    opacity: 0.8;
+}
+
+.active-star{
+    fill : rgb(223, 220, 40);
+
 }
 
 .bin{
