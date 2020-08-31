@@ -11,50 +11,41 @@ import "./post-list-item.css";
 // }
 
 class Postt extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            important : (this.props.important ? true : false),
-            liked : (this.props.liked ? true : false)
-        }
-        this.setFavorit = this.setFavorit.bind(this);
-        this.setLiked = this.setLiked.bind(this);
-}
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             important : (this.props.important ? true : false),
+//             liked : (this.props.liked ? true : false)
+//         }
+//         this.setFavorit = this.setFavorit.bind(this);
+//         this.setLiked = this.setLiked.bind(this);
+// }
 
 
-    setFavorit() {
-        this.setState(({important}) => ({
-            important : !important
-        }))
-    }
-
-    setLiked() {
-        this.setState(({liked}) => ({
-            liked : !liked
-        }))
-    }
+    
 
     render() {
-       const {label,deletePost} = this.props;
-       const {important} = this.state;
-       const {liked} = this.state;
+       const {label,liked,important,deletePost,onLike,onFavirite} = this.props;
 
     let favorit = "star";
+    let borderFav = "app-list-item d-flex justify-content-between";
     if (important){
         favorit += " active-star"
+        borderFav+= " fav-border"
      }
 
-     let likeShow = "like";
+     let likeShow ="like"
      if (liked){
         likeShow += " show";
      }
+
         
 
-    return(<li className="app-list-item d-flex justify-content-between">
-            <p className= "app-list-item-label" onClick = {this.setLiked}>{label}</p>
+    return(<li className={borderFav}>
+            <p className= "app-list-item-label" onClick = {onLike}>{label}</p>
             <p className= "d-flex justify-content-center align-items-center">
                 <button className="btn btn-sm" type= "button" onClick={deletePost} ><Bin/></button>
-                <button className="btn btn-sm" type= "button" onClick={this.setFavorit}><Star className= {favorit}/></button>
+                <button className="btn btn-sm" type= "button" onClick={onFavirite}><Star className= {favorit}/></button>
                 <Like className={likeShow}/>
             </p>
         </li>

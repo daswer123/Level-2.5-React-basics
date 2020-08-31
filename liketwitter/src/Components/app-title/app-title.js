@@ -1,11 +1,11 @@
 import React from "react";
 import "./app-title.css";
 
-const Title= () => {
+const Title= ({postAmount,likedPost,}) => {
     return (
     <section className= "app-header d-flex">
         <h1>Danil</h1>
-        <span>3 Записи понравилось из 5</span>
+    <span>{likedPost} Записи понравилось из {postAmount}</span>
     </section>)
     
 }

@@ -1,11 +1,13 @@
 .app-list-item {
   font-size: 1.25rem;
   background-color:rgba(235, 243, 250, 0.432);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
   margin-bottom: 25px;
   padding-left: 15px;
   padding-top: 10px;
   padding-right: 30px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  
 }
 
 .app-list-item button {
@@ -68,7 +70,7 @@
     line-height: 35px;
     font-size: 16px;
     color: red;
-    transition: 0.3s all;
+    transition: 0.5s all;
     transform: translateX(30px);
     opacity: 0;
 }
@@ -87,9 +89,14 @@
 }
 
 .app-list-item.important .app-list-item-label {
-  color: #FFD700;
+  color: #fffb00;
 }
 
 .app-list-item.important .btn-star {
     color: #aeaeae;
+}
+
+.fav-border{
+  background: linear-gradient(90deg, rgba(252,70,185,1) 0%, rgba(74,63,251,1) 100%);
+  color: white;
 }

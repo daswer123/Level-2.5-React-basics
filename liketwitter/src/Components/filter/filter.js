@@ -1,13 +1,33 @@
-import React from "react";
+import React,{Component} from "react";
 import "./filter.css";
 
-const Filter = () => {
-    return(
-    <p className= "btn-group filter d-flex">
-        <button className= "filter-btn btn btn-primary" type= "button">Всё</button>
-        <button className= "filter-btn btn btn-outline-primary" type= "button">Понравилось</button>
-    </p>
-    )
+class Filter extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            filter : this.props.filter
+        }
+        this.buttons = [
+            {name : "all", label: "Все"},
+            {name : "like", label: "Понравившиеся"}
+        ]
+    }
+
+    render(){  
+        const buttons = this.buttons.map(({name,label}) =>{
+            return (<button 
+                 key={name}
+                 className= {this.props.filter == name ? "filter-btn btn btn-primary" : "filter-btn btn btn-outline-primary"}
+                 type= "button"
+                 onClick = {() => this.props.filterPost(name)}
+                   >{label}</button>)
+        }); //filter-btn btn btn-primary
+    return ( 
+        <div className="btn-group">
+            {buttons}
+        </div>
+        )
+}
 }
 
 export default Filter
