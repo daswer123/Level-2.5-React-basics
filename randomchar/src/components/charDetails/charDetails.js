@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 // import './charDetails.css';
+import GetInfo from "../../services/servisec";
 import {ListGroup,ListGroupItem} from "reactstrap"
 import styled from "styled-components";
 
@@ -25,26 +26,56 @@ const Section = styled.div`
 
 
 export default class CharDetails extends Component {
+
+    state = {
+        char: null
+    }
+
+    updateChar = (charId) => {
+        const {itemId} = this.props
+        const char = new GetInfo();
+
+        char.getOneCharacter(itemId)
+        .then(char => {
+            console.log(itemId)
+            this.setState({char})
+        })
+    }
+
+    componentDidUpdate(prevProps){
+        if (prevProps.itemId !== this.props.itemId){
+            this.updateChar(this.props.itemId);
+        }
+    }
+
     render() {
+
+          if (!this.state.char){
+            return (
+                <span>Select your Champions!</span>
+            )
+        } 
+        
+        const {name,gender,born,died,culture} = this.state.char;
         return (
             <Section className="rounded">
-                <h4>John Snow</h4>
-                <ListGroup className="list-group-flush">
+               <h4>Random Character: {name}</h4>
+                <ListGroup className = "list-group-flush">
                     <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Gender</span>
-                        <span>male</span>
+                        <span>Gender </span>
+                            <span>{gender}</span>
                     </ListGroupItem>
                     <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Born</span>
-                        <span>1783</span>
+                        <span>Born </span>
+                        <span>{born}</span>
                     </ListGroupItem>
                     <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Died</span>
-                        <span>1820</span>
+                        <span>Died </span>
+                        <span>{died}</span>
                     </ListGroupItem>
                     <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Culture</span>
-                        <span>First</span>
+                        <span>Culture </span>
+                        <span>{culture}</span>
                     </ListGroupItem>
                 </ListGroup>
             </Section>

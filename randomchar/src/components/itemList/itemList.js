@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {ListGroup,ListGroupItem} from "reactstrap";
+import Spinner from "../Spinner";
+import GetInfo from "../../services/servisec";
 import styled from "styled-components";
 
 const ListGroupItemMod  = styled(ListGroupItem)`
@@ -13,18 +15,40 @@ const ListGroupMod = styled(ListGroup)`
 
 export default class ItemList extends Component {
 
+    state = {
+        charList : null
+    }
+
+    componentDidMount(){
+        const charInfo = new GetInfo();
+        charInfo.getAllcharacter(4,8)
+        .then(this.onCharListLoaded)
+    }
+
+    onCharListLoaded = (charList) =>{
+        this.setState({charList});
+    }
+
+    renderItem = (arr) =>{
+        return arr.map( (item,i) =>{
+            return(
+            <ListGroupItemMod key={i} onClick={() => this.props.charSelected(i)}>
+                {item.name}
+            </ListGroupItemMod>
+            )
+        })
+    }
+
     render() {
+
+        const {charList} = this.state;
+        if (!charList){
+            return <Spinner/>;
+        }
+        
         return (
             <ListGroupMod className="item-list">
-                <ListGroupItemMod>
-                    John Snow
-                </ListGroupItemMod>
-                <ListGroupItemMod>
-                    Brandon Stark
-                </ListGroupItemMod>
-                <ListGroupItemMod>
-                    Geremy
-                </ListGroupItemMod>
+                {this.renderItem(charList)}
             </ListGroupMod>
         );
     }
