@@ -22,6 +22,10 @@ class AddPost extends Component{
 
     createPost(e){
         e.preventDefault();
+        if (this.state.text == ""){
+            console.log("Напиште текст");
+            return;
+        }
         this.props.addPost(this.state.text);
         this.setState({
             text : ""
