@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ListGroup,ListGroupItem} from "reactstrap";
 import Spinner from "../Spinner";
+import ErrorMessage from "../errorMessage/index";
 import GetInfo from "../../services/servisec";
 import styled from "styled-components";
 
@@ -25,6 +26,7 @@ export default class ItemList extends Component {
         .then(this.onCharListLoaded)
     }
 
+
     onCharListLoaded = (charList) =>{
         this.setState({charList});
     }
@@ -40,6 +42,10 @@ export default class ItemList extends Component {
     }
 
     render() {
+
+        if (this.state.error) {
+            return <ErrorMessage/>
+        }
 
         const {charList} = this.state;
         if (!charList){

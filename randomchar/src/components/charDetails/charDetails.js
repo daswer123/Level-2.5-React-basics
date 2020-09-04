@@ -37,8 +37,9 @@ export default class CharDetails extends Component {
 
         char.getOneCharacter(itemId)
         .then(char => {
-            console.log(itemId)
-            this.setState({char})
+            this.setState({
+                char,
+            })
         })
     }
 
@@ -46,20 +47,35 @@ export default class CharDetails extends Component {
         if (prevProps.itemId !== this.props.itemId){
             this.updateChar(this.props.itemId);
         }
+
     }
 
     render() {
 
-          if (!this.state.char){
+        const {char} = this.state;
+        // const {itemId} = this.props;
+
+          if (!char){
             return (
-                <span>Select your Champions!</span>
-            )
-        } 
+                <span style={{color:"red"}}>Select your Champions!</span>
+            ) 
+        }
         
-        const {name,gender,born,died,culture} = this.state.char;
+        
+
         return (
             <Section className="rounded">
-               <h4>Random Character: {name}</h4>
+               {View(char)}
+            </Section>
+        );
+    }
+}
+
+const View = (char) =>{
+    const {name,gender,born,died,culture} = char;
+    return(
+        <>
+        <h4>Random Character: {name}</h4>
                 <ListGroup className = "list-group-flush">
                     <ListGroupItem className="d-flex justify-content-between">
                         <span>Gender </span>
@@ -78,7 +94,6 @@ export default class CharDetails extends Component {
                         <span>{culture}</span>
                     </ListGroupItem>
                 </ListGroup>
-            </Section>
-        );
-    }
+        </>
+    )
 }

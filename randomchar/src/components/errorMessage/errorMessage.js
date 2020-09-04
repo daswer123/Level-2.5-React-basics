@@ -4,7 +4,7 @@ import styled from "styled-components";
 import errorImg from "./errorImg.gif";
 
 
-const Error = styled.span`
+const Error = styled.p`
     width: 100%;
     font-size : 40px;
     color : red;
