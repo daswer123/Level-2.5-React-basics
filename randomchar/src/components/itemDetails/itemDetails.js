@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 // import './charDetails.css';
 import {ListGroup,ListGroupItem} from "reactstrap"
 import styled from "styled-components";
+import Spinner from "../Spinner";
 
 const Section = styled.div`
     background-color: #fff;
@@ -75,7 +76,9 @@ export default class ItemDetails extends Component {
 
           if (!item){
             return (
-                <span style={{color:"red"}}>Select your Champions!</span>
+                <Section className="rounded">
+                    <Spinner/>
+                </Section>
             ) 
         }
         
