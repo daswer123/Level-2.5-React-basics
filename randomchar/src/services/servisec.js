@@ -3,7 +3,7 @@ export default class GetInfo{
         this._gtApi = "https://anapioficeandfire.com/api";
     };
 
-    async getAllData(dataType,page = 1, pageSize = 5){
+    getAllData = async (dataType,page = 1, pageSize = 5) => { 
         let result = await fetch(`${this._gtApi}/${dataType}?page=${page}&pageSize=${pageSize}`);
 
         if (!result.ok){
@@ -14,7 +14,7 @@ export default class GetInfo{
         
     }
 
-    async getSingleData(dataType,id = 1){
+     getSingleData = async(dataType,id = 1) => {
         let result = await fetch(`${this._gtApi}/${dataType}/${id}`);
 
         if (!result.ok){
@@ -34,25 +34,27 @@ export default class GetInfo{
          return data;
      }
 
-    getAllHouses(page = 1, pageSize = 5){
+    getAllHouses = (page = 3, pageSize = 5) => {
         return this.getAllData("houses",page,pageSize);
     }
 
-    getOneHouse(id){
-        return this.getSingleData("houses",id);
+    getOneHouse = async (id) =>{
+        const house = await this.getSingleData("houses",id);
+        return this.fillEmptyData(this._transformHouse(house));
     }
-    getAllBooks(page = 1, pageSize = 5){
+    getAllBooks = (page = 3, pageSize = 5) =>{
         return this.getAllData("books",page,pageSize);
     }
 
-    getOneBook(id){
-        return this.getSingleData("books",id);
+    getOneBook = async (id) => {
+        const book = await this.getSingleData("books",id);
+        return this.fillEmptyData(this._transformBook(book));
     }
-    getAllcharacter(page = 1, pageSize = 5){
+    getAllcharacter = (page = 3, pageSize = 5) =>{
         return this.getAllData("characters",page,pageSize);
     }
 
-    async getOneCharacter(id){
+    getOneCharacter = async (id) => {
        const char = await this.getSingleData("characters",id);
        return this.fillEmptyData(this._transformChar(char));
     }
@@ -73,7 +75,7 @@ export default class GetInfo{
          name : house.name,
          region : house.region,
          words : house.words,
-         title: house.title,
+         title: house.titles,
          overlord: house.overlord,
          ancestralWeapons: house.ancestralWeapons
         }
@@ -88,3 +90,4 @@ export default class GetInfo{
         }
      }
 }
+

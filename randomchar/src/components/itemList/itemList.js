@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {ListGroup,ListGroupItem} from "reactstrap";
 import Spinner from "../Spinner";
 import ErrorMessage from "../errorMessage/index";
-import GetInfo from "../../services/servisec";
 import styled from "styled-components";
 
 const ListGroupItemMod  = styled(ListGroupItem)`
@@ -21,8 +20,17 @@ export default class ItemList extends Component {
     }
 
     componentDidMount(){
-        const charInfo = new GetInfo();
-        charInfo.getAllcharacter(4,8)
+
+        let {getData,page,pageSize} = this.props;
+        if (!page || !pageSize){
+            page = 1;
+            pageSize = 5;
+            console.log("Not ok")
+        }
+
+        console.log(this.props);
+        // const charInfo = new GetInfo();
+        getData(page,pageSize)
         .then(this.onCharListLoaded)
     }
 
@@ -34,8 +42,8 @@ export default class ItemList extends Component {
     renderItem = (arr) =>{
         return arr.map( (item,i) =>{
             return(
-            <ListGroupItemMod key={i} onClick={() => this.props.charSelected(i)}>
-                {item.name}
+            <ListGroupItemMod key={i} onClick={() => this.props.ItemSelected(i)}>
+                {this.props.renderLabel(item)}
             </ListGroupItemMod>
             )
         })
