@@ -35,6 +35,8 @@ class BookPage extends Component {
         return (
             <ItemList
                         getData = {this.GetInfo.getAllBooks} 
+                        page = {1}
+                        pageSize = {10}
                         ItemSelected={(itemId) => {
                             this.props.history.push(""+(itemId+1))
                         }}

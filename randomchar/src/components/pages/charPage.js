@@ -32,10 +32,10 @@ export default class CharPage extends Component {
         return (
             <ItemList
                         getData = {this.GetInfo.getAllcharacter} 
-                        page = {13} 
-                        pageSize = {5} 
+                        page = {6} 
+                        pageSize = {10} 
                         ItemSelected={(itemId) => {
-                            this.props.history.push(""+(itemId+61))
+                            this.props.history.push(""+(itemId+51))
                         }}
                         renderLabel = {(item) => `${item.name} / ${item.gender}`}/>
         )

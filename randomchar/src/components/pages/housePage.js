@@ -33,10 +33,10 @@ export default class CharPage extends Component {
         return (
             <ItemList
                         getData = {this.GetInfo.getAllHouses} 
-                        page = {3} 
-                        pageSize = {5} 
+                        page = {1} 
+                        pageSize = {10} 
                         ItemSelected={(itemId) => {
-                            this.props.history.push(""+(itemId+11))
+                            this.props.history.push(""+(itemId+1))
                         }}
                         renderLabel = {(item) => `${item.name}`}/>
         )

@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {Col, Row, Container,Button} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharPage,{BookPage,HousePage} from "../pages/";
+import CharPage,{BookPage,HousePage,WelcomePage} from "../pages/";
 import {BookInfo,CharInfo,HouseInfo} from "../innerItem/";
 import ErrorMessage from '../errorMessage';
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -59,7 +59,7 @@ export default class App extends Component{
                         </Col>
                     </Row>
                     <Button onClick={this.onRandomShowed} color="info">Toggle RandomChar</Button>
-                    <Route path="/" exact component={CharPage}/>
+                    <Route path="/" exact component={WelcomePage}/>
                     <Route path="/characters/" exact component={CharPage}/>
                     <Route path="/houses/" exact component={HousePage}/>
                     <Route path="/books/" exact component={BookPage}/>
