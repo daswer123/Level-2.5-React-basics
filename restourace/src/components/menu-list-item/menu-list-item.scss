@@ -1,5 +1,6 @@
 .menu {
     &__item {
+        position: relative;
         width: 350px;
         min-height: 400px;
         background-color: #fff;
@@ -38,5 +39,26 @@
         color: #fff;
         font-size: 16px;
         cursor: pointer;
+    }
+    &__icon {
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        right: 40px;
+        bottom: 25px;
+    }
+
+    &__icon_salads{
+        background-image: url("./category-img/salad.png");
+    }
+
+    &__icon_pizza{
+        background: url("./category-img/pizza.png");
+        fill : red;
+    }
+
+    &__icon_meat{
+        background-image: url("./category-img/meat.png");
     }
 }

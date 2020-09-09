@@ -1,13 +1,10 @@
 import React from 'react';
-import './menu-list-item.scss';
+import '../menu-list-item/menu-list-item.scss';
 
 const MenuListItem = ({menuItem}) => {
-    const sayHi = (id) =>{
-        console.log("Hi"+id)
-    }
     const {title,price,url,category,id} = menuItem;
     return (
-            <li className={`menu__item`} onClick={() => sayHi(id)}>
+            <li className={`menu__item`}>
                 <h3 className="menu__title">{title}</h3>
                 <img className={`menu__img`} src={url} alt={title}/>
                 <div className="menu__category">Category: <span>{category}</span><span className={`menu__icon menu__icon_${category}`}></span></div>

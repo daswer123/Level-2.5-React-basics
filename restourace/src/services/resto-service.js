@@ -5,7 +5,6 @@ class RestService {
         if (!request.ok){
             throw new Error("Couldn't Fetch"+request.status);
         }
-
         return await request.json();
     }
 }
