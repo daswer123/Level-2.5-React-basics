@@ -21,6 +21,7 @@ class MenuList extends Component {
         })
     }
 
+
     render() {
 
         const {menuItems,loading,error} = this.props;
@@ -33,7 +34,12 @@ class MenuList extends Component {
         }
 
         const ViewItems = menuItems.map(menuItem => {
-            return <MenuListItem key={menuItem.id} menuItem={menuItem}/>
+            return <MenuListItem
+            key={menuItem.id} 
+            menuItem={menuItem}
+            itemId = {menuItem.id}
+            ItemSelected = {this.props.ItemSelected}
+            />
         })
         
         return (

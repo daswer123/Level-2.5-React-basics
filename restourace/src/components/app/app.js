@@ -1,5 +1,5 @@
 import React from 'react';
-import {MainPage,CartPage} from '../pages';
+import {MainPage,CartPage,MenuPage} from '../pages';
 import AppHeader from '../app-header';
 import withRestoreService from "../hoc";
 import {Switch,Route} from "react-router-dom";
@@ -13,10 +13,10 @@ const App = ({RestoService}) => {
                 <Switch>
                     <Route path="/" exact component={MainPage}/>
                     <Route path="/cart" exact component={CartPage}/>
-                    {/* <Route path="/menu/:id" exact render={ ({match})=>{
-                        const id = match.params;
+                    <Route path="/menu/:id" exact render={ ({match})=>{
+                        const {id} = match.params;
                         return <MenuPage itemId={id}/>
-                    }}/> */}
+                    }}/>
                     <Route component={ErrorBoundry}/>
                 </Switch>
             

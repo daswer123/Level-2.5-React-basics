@@ -1,9 +1,9 @@
 import React from 'react';
 import MenuList from '../menu-list';
 
-const MainPage = () => {
+const MainPage = ({history}) => {
     return (
-        <MenuList/>
+        <MenuList ItemSelected={(itemId) => {history.push("/menu/"+(itemId))}}/>
     )
 }
 

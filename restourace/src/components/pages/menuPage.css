@@ -1,0 +1,47 @@
+
+.menu__item--more{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+
+.menu__item--more h3{
+    margin-top : 10px;
+}
+.back{
+    border:0px;
+    background-color: white;
+    color : green;
+    position: absolute;
+    top: 30px;
+}
+
+.menu__desk{
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.menu__item--more .menu__category{
+    margin: 0 auto;
+}
+
+.menu__item--more .menu__price{
+    margin: 0 auto;
+}
+
+.menu__item--more .menu__btn{
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    width: 50%;
+    min-height: 100px;
+}
+
+.menu_block{
+    height: 117px;
+}

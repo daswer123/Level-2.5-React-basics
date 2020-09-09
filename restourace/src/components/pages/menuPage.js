@@ -1,17 +1,44 @@
-import React from 'react';
+import React,{Component} from 'react';
+import {Link} from "react-router-dom";
+import withRestoServices from "../hoc"
 import '../menu-list-item/menu-list-item.scss';
+import "./menuPage.css";
 
-const MenuListItem = ({menuItem}) => {
-    const {title,price,url,category,id} = menuItem;
-    return (
-            <li className={`menu__item`}>
+class MenuItem extends Component{
+
+    state = {
+        menuItem : {}
+    }
+
+    componentDidMount(){
+        const {RestoService,itemId} = this.props
+        RestoService.getOneItem(itemId).then(menuItem=>{
+            this.setState({
+                menuItem
+            })
+        })
+    }
+
+
+    render () {
+    
+    
+        const {title,url,category,price,desc} = this.state.menuItem
+        return (
+            <>
+            <section className={`menu__item menu__item--more`}>
                 <h3 className="menu__title">{title}</h3>
+                <Link className="back" to="/">Back to menu</Link>
                 <img className={`menu__img`} src={url} alt={title}/>
-                <div className="menu__category">Category: <span>{category}</span><span className={`menu__icon menu__icon_${category}`}></span></div>
-                <div className="menu__price">Price: <span>{price}$</span></div>
+                <p className="menu__desk">{desc}</p>
+                <p className="menu__category">Category: <span>{category}</span></p>
+                <p className="menu__price">Price: <span>{price}$</span></p>
                 <button className="menu__btn">Add to cart</button>
-            </li>
-    )
+            </section>
+            <div className="menu_block"></div>
+            </>
+            )
 }
+    }
 
-export default MenuListItem;
+export default withRestoServices()(MenuItem);
