@@ -41,48 +41,5 @@
       "id": 5
     }
   ],
-  "orders": [
-    [
-      {
-        "title": "Cesar salad",
-        "price": 12,
-        "priceOne": 12,
-        "count": 1
-      },
-      {
-        "title": "Pizza Margherita",
-        "price": 10,
-        "priceOne": 10,
-        "count": 1
-      },
-      {
-        "total": 22,
-        "id": 759
-      }
-    ],
-    [
-      {
-        "title": "Cesar salad",
-        "price": 12,
-        "priceOne": 12,
-        "count": 1
-      },
-      {
-        "title": "Pizza Margherita",
-        "price": 10,
-        "priceOne": 10,
-        "count": 1
-      },
-      {
-        "title": "Pizza Napoletana",
-        "price": 13,
-        "priceOne": 13,
-        "count": 1
-      },
-      {
-        "total": 35,
-        "id": 569
-      }
-    ]
-  ]
+  "orders": []
 }
