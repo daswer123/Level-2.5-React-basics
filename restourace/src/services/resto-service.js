@@ -1,10 +1,11 @@
 class RestService { 
-    _apiBase = "http://localhost:3001/menu" 
+    _apiBase = "https://my-json-server.typicode.com/daswer123/Level-2.5-React-basics" 
 
     getData = async () =>{
-        const request = await fetch(this._apiBase);
+        const request = await fetch(this._apiBase+"/menu");
 
         if (!request.ok){
+            console.log(request)
             throw new Error("Couldn't Fetch"+request.status);
         }
         return await request.json();
@@ -23,6 +24,18 @@ class RestService {
         })
         return result
         
+    }
+
+    PostData = async (data) => {
+        let request = await fetch(this._apiBase+"/orders",{
+            method : "POST",
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body : data,
+        })
+        console.log(data)
+        return await request.json();
     }
 
 

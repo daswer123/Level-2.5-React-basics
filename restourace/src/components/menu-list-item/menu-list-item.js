@@ -12,7 +12,7 @@ const MenuListItem = (props) => {
                 </div>
                 <div className="menu__category">Category: <span>{category}</span><span className={`menu__icon menu__icon_${category}`}></span></div>
                 <div className="menu__price">Price: <span>{price}$</span></div>
-                <button className="menu__btn">Add to cart</button>
+                <button onClick={() => props.onAddToCart()} className="menu__btn">Add to cart</button>
             </li>
     )
 }

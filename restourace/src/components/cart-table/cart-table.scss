@@ -40,10 +40,75 @@
         text-align: center;
         top: -10px;
         right: -10px;
-        color: #fff;
+        color: black;
         font-size: 20px;
         border-radius: 100%;
         border: 1px solid #fff;
         cursor: pointer;
     }
+    &__item-counter{
+        position: absolute;
+        right: 10px;
+        left: 50%;
+        top: 50px;
+    }
+}
+
+.cart__order{
+    display: block;
+    text-decoration: none;
+    width: 300px;
+    height: 40px;
+    border: none;
+    background-color: #29a745;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.without-order{
+    display: flex;
+    flex-direction: column;
+}
+
+.without-order h2{
+    margin: 0 auto;
+    color:white;
+}
+
+.without-order-img{
+    // width: 600px;
+    // height: 600px;
+    margin: 0 auto;
+}
+
+.plus{
+    position: absolute;
+    border:0;
+    font-size:0;
+    width: 25px;
+    height: 25px;
+    left:38%;
+    top:3px;
+
+    background-color: inherit;
+    background-image: url("./plus.svg");
+}
+
+.minus{
+    position: absolute;
+    border:0;
+    font-size:0;
+    width: 25px;
+    height: 25px;
+    right:40%;
+    top:3px;
+
+    background-color: inherit;
+    background-image: url("./minus.svg"); 
 }
