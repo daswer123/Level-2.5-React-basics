@@ -10,24 +10,24 @@ class TaskList extends Component{
 
     componentDidMount(){
         let {TodoInfo,postsLoaded} = this.props;
-        TodoInfo = new TodoInfo;
+        TodoInfo = new TodoInfo();
         TodoInfo.getAllPosts()
         .then(result => postsLoaded(result))
     }
 
+
     render(){
-        const {posts} = this.props;
+        const {posts,name,label,color} = this.props;
         return(
             <>
-                <h2>TaskList Name</h2>
+                <h3 style={{color : color}}>{name}</h3>
                 <List>
                     {
-                    posts.map(post =>{
+                    posts.filter(post => post.category == label)
+                    .map(post =>{
                        return <Task
-                        label={post.label}
-                        category={post.category}
-                        completed={post.completed}
-                        id={`post-${post.category}-${post.id}`}
+                        {...post}
+                        id={post.id}
                         key={`post-${post.category}-${post.id}`}
                         />
                     })}

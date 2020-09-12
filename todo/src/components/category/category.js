@@ -1,12 +1,26 @@
 import React from "react";
+import {connect} from "react-redux";
 import {ListItem,Button} from "@material-ui/core";
+import {selectedCategory} from "../../actions/action";
 
-const Category = ({label,color,id}) => {
+const Category = ({label,color,name,selectedCategory,children}) => {
     return (
-        <ListItem style={{color : color}}>
-            <Button>{label}</Button>
+        <ListItem>
+            <Button  
+            style={{color : color}}
+            onClick={() => selectedCategory(label) }
+            >{name}</Button>
+            {children}
         </ListItem>
     )
 }
 
-export default Category
+const mapStateToProps = (state) =>{
+    return {}
+}
+
+const mapDispatchToProps = {
+    selectedCategory,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Category)

@@ -19,25 +19,67 @@ class TodoInfo{
         return await this.getAllData("/categories")
     }
 
-    deleteOneItem = async (url,id) => {
-        const request = fetch(`${this._api_base}${url}/${id}`,{
-            method : "DELETE"
-        });
+    addNewItem = async (url,data) => {
+        const request = await fetch(`${this._api_base}${url}`,{
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : data
+        })
 
-        if (!request.ok){
-            throw new Error(`Couldn't fetch ${request.url} because ${request.statusText}`)
+        if (!request.ok) {
+            throw new Error("couldn't fetch"+url+" because" + request.status);
         }
 
-        return "Item Deleted"
+        return request.json()
+    }
+
+    addNewTask =  async (data) => {
+        return await this.addNewItem("/tasks",data)
+    }
+
+    addNewCategory =  async (data) => {
+        return await this.addNewItem("/categories",data)
+    }
+
+    deleteOneItem = async (url,id) => {
+        
+
+        fetch(`${this._api_base}${url}/${id}`,{
+            method : "DELETE",
+            headers: {
+                "Content-type" : "application/json"
+            }
+        });
+
+        // if (!request.ok){
+        //     throw new Error(`Couldn't fetch ${request.url} because ${request.statusText}`)
+        // }
+
+        console.log("Item-Deled")
     }
 
     deleteTask = async (id) => {
-        return await this.deleteOneItem(`/tasks/${id}`);
+        return await this.deleteOneItem(`/tasks`,id);
     }
 
     deleteCategory = async (id) => {
-        return await this.deleteOneItem(`/categories/${id}`);
+        return await this.deleteOneItem(`/categories`,id);
+    }
+
+    toggleTask = async (id,data) => {
+        const request = await fetch(this._api_base+"/tasks/"+id,{
+            method : "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body : data
+        })
+        return await request.json()
     }
 }
 
 export default TodoInfo
+
+
+
+

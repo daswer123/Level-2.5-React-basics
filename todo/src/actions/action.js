@@ -12,7 +12,39 @@ const postsLoaded = (posts) => {
     }
 }
 
+const selectedCategory = (categoryName) => {
+    return {
+        type : "SELECTED_CATEGORY",
+        active: categoryName
+    }
+}
+
+const postStatusToggle = (post) => {
+    return {
+        type: "POST_STATUS_TOGGLED",
+        payload : post
+    }
+}
+
+const postDelete = (id) => {
+    return {
+        type : "POST_DELETED",
+        postId : id
+    }
+}
+
+const postCreated = (post) => {
+    return {
+        type : "POST_CREATED",
+        payload : post
+    }
+}
+
 export {
     categoryLoaded,
-    postsLoaded
+    postsLoaded,
+    selectedCategory,
+    postStatusToggle,
+    postDelete,
+    postCreated
 }
