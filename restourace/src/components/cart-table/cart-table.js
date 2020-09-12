@@ -27,13 +27,12 @@ const CartTable = ({items,removeFromCart,addOneItem,removeOneItem,makeOrder,Rest
                             <img src={url} className="cart__item-img" alt={title}></img>
                             <div className="cart__item-title">
                                 <strong>{title}</strong>
-                             
+                                </div>
                              <div className="cart__item-counter">
                              <button onClick={() => addOneItem(id)}className="plus" type="button"></button>
-                                 {count+1}
+                                 <span className="counter-value">{count+1}</span>
                             <button onClick={() => removeOneItem(id)}className="minus" type="button">Минус</button>
                             </div>
-                             </div>
                             <p className="cart__item-price">{price}$</p>
                             <button onClick={() => removeFromCart(id)} type="button" className="cart__close">&times;</button>
                         </li> 

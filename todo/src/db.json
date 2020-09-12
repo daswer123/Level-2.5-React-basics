@@ -1,0 +1,42 @@
+{
+    "tasks": [
+      {
+        "label": "Изучить Js",
+        "category": "frontend",
+        "complited": "false",
+        "id": 1
+      },
+      {
+        "label": "Изучить React",
+        "category": "frontend",
+        "complited": "false",
+        "id": 2
+      },
+      {
+        "label": "Написать Todo",
+        "category": "frontend",
+        "complited": "false",
+        "id": 3
+      },
+      {
+        "label": "Купить новые курсы",
+        "category": "pokupki",
+        "complited": "false",
+        "id": 4
+      }
+    ],
+    "categories": [
+      {
+      "label" : "frontend",
+      "name" : "Фронтенд",
+      "color" : "#000000",
+      "id"   : 1
+    },
+    {
+      "label" : "pokupki",
+      "name" : "Покупки",
+      "color" : "#000080",
+      "id"   : 2
+    }
+  ]
+}

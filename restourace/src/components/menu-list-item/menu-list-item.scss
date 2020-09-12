@@ -23,9 +23,9 @@
         margin-bottom: 20px;
     }
     &__category, &__price {
+        display: flex;
         font-size: 18px;
         font-weight: 300;
-        margin-bottom: 10px;
         span {
             font-weight: 700;
         }
@@ -42,7 +42,7 @@
     }
     &__icon {
         display: block;
-        position: absolute;
+        margin-left: auto;
         width: 64px;
         height: 64px;
         right: 40px;
