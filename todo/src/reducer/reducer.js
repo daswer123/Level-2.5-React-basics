@@ -1,7 +1,8 @@
 const initialState = {
     posts : [],
     categories : [],
-    activeCategory : ""
+    activeCategory : "",
+    colorPick : ["#C9D1D3","#42B883","#64C4ED","#FFBBCC","#B6E6BD","#C355F5","#09011A","#FF6464"]
 
 }
 
@@ -78,6 +79,20 @@ const reducer = (state = initialState,action) => {
                 categories : [
                     ...state.categories.slice(0,deletedCategoryIndex),
                     ...state.categories.slice(deletedCategoryIndex+1)
+                ]
+            }
+        
+        case "CHANGE_CATEGORY_NAME":
+            const categoryWithNewName = action.payload;
+            const OldCategoryIndex = state.categories.findIndex(category => category.id == categoryWithNewName.id)
+            console.log(OldCategoryIndex,categoryWithNewName)
+
+            return {
+                ...state,
+                categories : [
+                    ...state.categories.slice(0,OldCategoryIndex),
+                    categoryWithNewName,
+                    ...state.categories.slice(OldCategoryIndex+1)
                 ]
             }
 

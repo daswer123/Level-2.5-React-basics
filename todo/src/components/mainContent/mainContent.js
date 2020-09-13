@@ -22,18 +22,22 @@ class MainContent extends Component{
     }
 
 
-    returnTaskList(category){
+    returnTaskList(category,editable = false){
         
         if (typeof(category) === "undefined"){
             return <p>No content here</p>
         }
+
     
         console.log(category)
         return <TaskList 
+            id = {category.id}
             name={category.name} 
             label={category.label}
             key={`${category.label}-${category.id}`}
-            color={category.color}/>
+            color={category.color}
+            editable={editable}/>
+            
     }
 
     render(){
@@ -63,7 +67,7 @@ class MainContent extends Component{
             const category = categories.find(category => category.label === activeCategory);
             return (
                 <>
-                    {this.returnTaskList(category)}
+                    {this.returnTaskList(category,true)}
                     {createPost()}
                 </>
                 )

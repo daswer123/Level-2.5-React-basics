@@ -54,6 +54,13 @@ const CategoryDelete = (label) => {
     }
 }
 
+const ChangeCategoryName = (category) => {
+    return {
+        type : "CHANGE_CATEGORY_NAME",
+        payload: category,
+    }
+}
+
 export {
     categoryLoaded,
     postsLoaded,
@@ -62,5 +69,6 @@ export {
     postDelete,
     postCreated,
     CategoryCreated,
-    CategoryDelete
+    CategoryDelete,
+    ChangeCategoryName
 }

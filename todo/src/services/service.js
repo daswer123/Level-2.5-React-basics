@@ -68,13 +68,21 @@ class TodoInfo{
         return await this.deleteOneItem(`/categories`,id);
     }
 
-    toggleTask = async (id,data) => {
-        const request = await fetch(this._api_base+"/tasks/"+id,{
+    changeItems = async (url,id,data) => {
+        const request = await fetch(this._api_base+url+id,{
             method : "PUT",
             headers: {'Content-Type': 'application/json'},
             body : data
         })
         return await request.json()
+    }
+
+    changeCategoryName = async (id,data) => {
+       return await this.changeItems("/categories/",id,data)
+    }
+
+    toggleTask = async (id,data) => {
+        return await this.changeItems("/tasks/",id,data)
     }
 }
 

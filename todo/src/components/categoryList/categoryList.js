@@ -66,6 +66,10 @@ class CategoryList extends Component{
             <List>
                 {categories.map(category => {
 
+                    if (typeof(category) === "undefind"){
+                        return <h2>Errorka</h2>
+                    }
+
                     if (category.label == activeCategory){
                         return (
                             <Category {...category} key={`${category.label}-${category.id}`}>

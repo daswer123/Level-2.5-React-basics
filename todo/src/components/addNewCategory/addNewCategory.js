@@ -4,13 +4,23 @@ import withTaskContext from "../hoc";
 import cyrllicToTranslit from "cyrillic-to-translit-js";
 import {createUnicId} from "../../services/service"
 import {CategoryCreated} from "../../actions/action"
+import ColorList from "../colorList";
 
 
 class AddNewCategory extends Component{
 
 
     state = {
-        text : ""
+        text : "",
+        activeColor : ""
+    }
+
+
+    onActiveColor(color){
+        console.log(color)
+        this.setState({
+            activeColor : color
+        })
     }
 
     onSubmitForm(e){
@@ -19,16 +29,17 @@ class AddNewCategory extends Component{
         let {TodoInfo,onCreateNewCategory,categories,CategoryCreated} = this.props;
         TodoInfo = new TodoInfo();
 
-        if (this.state.text === ""){
-            alert("Пожалуйста введите текст");
+        const {text,activeColor} = this.state
+        if (text === "" || activeColor === ""){
+            alert("Пожалуйста введите текст или выберите цвет категории");
             return
         }
 
-        let color = `#${Math.floor(Math.random()*999999+100000)}`
-        const {text} = this.state
+        // let color = `#${Math.floor(Math.random()*999999+100000)}`
+
         const data = {
             name : text,
-            color : color,
+            color : activeColor,
             id : createUnicId(categories)
         }
 
@@ -57,7 +68,9 @@ class AddNewCategory extends Component{
             <form action="#" onSubmit={(e) => this.onSubmitForm(e)}>
                 <button onClick={onCreateNewCategory} className="close-add-category">Закрыть</button>
                 <input onInput={(e) => this.onInput(e)} type="text" name="category-name"/>
-                <div className="color-type"></div>
+                <div className="color-type">
+                    <ColorList onActiveColor={(color) => this.onActiveColor(color)} activeColor={this.state.activeColor}/>
+                </div>
                 <button type="submit">Добавить</button>
             </form>
         </>
