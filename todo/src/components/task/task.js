@@ -32,8 +32,6 @@ class Task extends Component{
         let {TodoInfo,id,postDelete} = this.props;
         TodoInfo = new TodoInfo();
 
-        console.log(id);
-        
         postDelete(id)
         TodoInfo.deleteTask(id)
     }

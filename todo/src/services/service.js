@@ -78,7 +78,25 @@ class TodoInfo{
     }
 }
 
+const createUnicId = (items) => {
+    let id = 1;
+
+    items.forEach(item => {
+        while(id <= item.id){
+            console.log(id, item.id)
+            id += Math.floor(Math.random()*5+1)
+        }
+        })
+        return id
+    }
+
+
+    
+
 export default TodoInfo
+export {
+    createUnicId,
+}
 
 
 

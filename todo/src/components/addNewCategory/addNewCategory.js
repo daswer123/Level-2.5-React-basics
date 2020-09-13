@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {connect} from "react-redux";
 import withTaskContext from "../hoc";
 import cyrllicToTranslit from "cyrillic-to-translit-js";
-
+import {createUnicId} from "../../services/service"
+import {CategoryCreated} from "../../actions/action"
 
 
 class AddNewCategory extends Component{
@@ -13,10 +14,32 @@ class AddNewCategory extends Component{
     }
 
     onSubmitForm(e){
-        let {TodoInfo} = this.props;
+        e.preventDefault();
+
+        let {TodoInfo,onCreateNewCategory,categories,CategoryCreated} = this.props;
         TodoInfo = new TodoInfo();
 
-        e.preventDefault();
+        if (this.state.text === ""){
+            alert("Пожалуйста введите текст");
+            return
+        }
+
+        let color = `#${Math.floor(Math.random()*999999+100000)}`
+        const {text} = this.state
+        const data = {
+            name : text,
+            color : color,
+            id : createUnicId(categories)
+        }
+
+        data.label = `${cyrllicToTranslit().transform(text,"-")}-${data.id}`
+
+
+        CategoryCreated(data);
+        TodoInfo.addNewCategory(JSON.stringify(data));
+        onCreateNewCategory();
+
+        
     }
 
     onInput(e){
@@ -42,4 +65,14 @@ class AddNewCategory extends Component{
     }
 }
 
-export default withTaskContext()(connect()(AddNewCategory));
+const mapStateToProps = (state) => {
+    return {
+        categories : state.categories
+    }
+}
+
+const mapDispatchToProps = {
+    CategoryCreated,
+}
+
+export default withTaskContext()(connect(mapStateToProps,mapDispatchToProps)(AddNewCategory));

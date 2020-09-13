@@ -40,11 +40,27 @@ const postCreated = (post) => {
     }
 }
 
+const CategoryCreated = (category) => {
+    return {
+        type : "CATEGORY_CREATED",
+        payload : category
+    }
+}
+
+const CategoryDelete = (label) => {
+    return {
+        type : "CATEGORY_DELETED",
+        categoryLabel : label
+    }
+}
+
 export {
     categoryLoaded,
     postsLoaded,
     selectedCategory,
     postStatusToggle,
     postDelete,
-    postCreated
+    postCreated,
+    CategoryCreated,
+    CategoryDelete
 }

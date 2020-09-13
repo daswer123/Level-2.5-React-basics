@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import {List,Button} from "@material-ui/core";
 import {connect} from "react-redux";
-import {categoryLoaded,selectedCategory} from "../../actions/action";
+import {categoryLoaded,selectedCategory,CategoryDelete} from "../../actions/action";
 import withTaskContext from "../hoc";
 import Category from "../category"
 import AddNewCategory from "../addNewCategory"
@@ -26,26 +26,44 @@ class CategoryList extends Component{
         })
     }
 
+    deleteAllCategoryPosts(label){
+        const {posts,TodoInfo} = this.props
+        const Todo = new TodoInfo();
+
+        posts.forEach(post => {
+            if (post.category == label){
+                Todo.deleteTask(post.id)
+            }
+        });
+    }
+
+    onDeleteCategory(label,id){
+        const {CategoryDelete,TodoInfo,selectedCategory} = this.props
+        const Todo = new TodoInfo();
+
+        CategoryDelete(label);
+        this.deleteAllCategoryPosts(label)
+        selectedCategory("");
+        Todo.deleteCategory(id);
+    }
+
     render() {
         const {categories,selectedCategory,activeCategory} = this.props
 
-        const Button = () => {
-            return <button type="button">Добавить новую папку</button>
+        const addCategoryBtn = () => {
+            if (this.state.createNewCategory){
+                return <AddNewCategory onCreateNewCategory={() => this.onCreateNewCategory()}/>
+            } 
+            return <button 
+            type="button"
+            onClick={() => this.onCreateNewCategory()}
+            >Добавить новую папку</button>
         }
 
-        const addCategoryBtn = this.state.createNewCategory ? 
-        <AddNewCategory
-         onCreateNewCategory={() => this.onCreateNewCategory()}
-         /> 
-         : 
-         <button 
-        type="button"
-        onClick={() => this.onCreateNewCategory()}
-        >Добавить новую папку</button>
-
         return(
+            <>
+            <Button color="primary" onClick={() => selectedCategory("")}>Все задачи</Button>
             <List>
-                <Button color="primary" onClick={() => selectedCategory("")}>Все задачи</Button>
                 {categories.map(category => {
 
                     if (category.label == activeCategory){
@@ -53,14 +71,16 @@ class CategoryList extends Component{
                             <Category {...category} key={`${category.label}-${category.id}`}>
                                 <button 
                                 key={`${category}-btn ${category}-${category.id}-btn`} type="button"
+                                onClick={() => this.onDeleteCategory(category.label,category.id)}
                                 >Удалить</button>
                             </Category>
                         )
                     }
                     return <Category {...category} key={`${category.label}-${category.id}`}/>
                 })}
-             {addCategoryBtn}
+             {addCategoryBtn()}
             </List>
+            </>
         )
     }
 }
@@ -68,13 +88,15 @@ class CategoryList extends Component{
 const mapStateToProps = (state) => {
     return {
         categories : state.categories,
-        activeCategory : state.activeCategory
+        activeCategory : state.activeCategory,
+        posts : state.posts
     }
 }
 
 const mapDispatchToProps = {
     categoryLoaded,
-    selectedCategory
+    selectedCategory,
+    CategoryDelete
 }
 
 export default withTaskContext()(connect(mapStateToProps,mapDispatchToProps)(CategoryList))

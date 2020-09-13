@@ -1,28 +1,22 @@
 {
   "tasks": [
     {
-      "label": "Купить новые курсы",
-      "category": "pokupki",
-      "complited": true,
-      "id": 11
+      "label": "Кукушка",
+      "category": "frontend",
+      "complited": false,
+      "id": 9
     },
     {
-      "label": "Купить мороженное",
-      "category": "pokupki",
+      "label": "Кукушка",
+      "category": "frontend",
       "complited": false,
-      "id": 12
+      "id": 11
     },
     {
       "label": "Кукушка",
       "category": "pokupki",
       "complited": false,
-      "id": 13
-    },
-    {
-      "label": "Сделать TODO проект",
-      "category": "frontend",
-      "complited": false,
-      "id": 5
+      "id": 14
     }
   ],
   "categories": [

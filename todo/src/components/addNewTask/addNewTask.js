@@ -2,12 +2,14 @@ import React,{Component} from "react";
 import withTaskContext from "../hoc";
 import {connect} from "react-redux";
 import {postCreated} from "../../actions/action";
+import {createUnicId} from "../../services/service";
 
 class AddNewTask extends Component{
     
     state = {
         text : "",
     }
+
 
     onAddTask = (e) =>{
         let {TodoInfo,ActiveCategory,posts,onTaskCreate,postCreated} = this.props;
@@ -18,11 +20,13 @@ class AddNewTask extends Component{
             alert("Пожалуйста введите текст");
             return
         }
+
+        console.log(posts,createUnicId(posts))
         const data = {
             label : this.state.text,
             category : ActiveCategory,
             complited : false,
-            id : posts.length + 1
+            id : createUnicId(posts)
         }
 
         postCreated(data)

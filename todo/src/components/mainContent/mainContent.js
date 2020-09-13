@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import TaskList from "../taskList";
 import {connect} from "react-redux";
 import AddNewTask from "../addNewTask";
+import {selectedCategory} from "../../actions/action"
 
 class MainContent extends Component{
 
@@ -12,10 +13,27 @@ class MainContent extends Component{
     componentDidMount(){
     }
 
+    
+
     onTaskCreate = () => {
         this.setState({
             createPost : !this.state.createPost
         })
+    }
+
+
+    returnTaskList(category){
+        
+        if (typeof(category) === "undefined"){
+            return <p>No content here</p>
+        }
+    
+        console.log(category)
+        return <TaskList 
+            name={category.name} 
+            label={category.label}
+            key={`${category.label}-${category.id}`}
+            color={category.color}/>
     }
 
     render(){
@@ -36,7 +54,7 @@ class MainContent extends Component{
         const allCategories = () =>{
             return (
                 categories.map(category => {
-                    return returnTaskList(category)
+                    return this.returnTaskList(category)
                 })
             )
         }
@@ -45,7 +63,7 @@ class MainContent extends Component{
             const category = categories.find(category => category.label === activeCategory);
             return (
                 <>
-                    {returnTaskList(category)}
+                    {this.returnTaskList(category)}
                     {createPost()}
                 </>
                 )
@@ -59,14 +77,10 @@ class MainContent extends Component{
      )
     }
 
-}
 
-const returnTaskList = (category) => {
-    return <TaskList 
-        name={category.name} 
-        label={category.label}
-        key={`${category.label}-${category.id}`}
-        color={category.color}/>
+    
+    
+
 }
 
 
@@ -77,4 +91,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(MainContent);
+const mapDispathToProps = {
+    selectedCategory,
+}
+
+export default connect(mapStateToProps,mapDispathToProps)(MainContent);

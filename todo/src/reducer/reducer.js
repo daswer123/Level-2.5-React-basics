@@ -56,6 +56,31 @@ const reducer = (state = initialState,action) => {
                     ...newPostArray
                 ]
             }
+
+        case "CATEGORY_CREATED":
+            const newCategoryArray = state.categories;
+            newCategoryArray.push(action.payload)
+            return {
+                ...state,
+                categories : [
+                    ...newCategoryArray
+                ]
+            }
+        
+        case "CATEGORY_DELETED":
+            const deletedCategoryIndex = state.categories.findIndex(category => category.label == action.categoryLabel)
+            const postArrayDeleted = state.posts.filter(post => post.category != action.categoryLabel)
+            return {
+                ...state,
+                posts : [
+                    ...postArrayDeleted
+                ],
+                categories : [
+                    ...state.categories.slice(0,deletedCategoryIndex),
+                    ...state.categories.slice(deletedCategoryIndex+1)
+                ]
+            }
+
         default:
             return state;
         }
