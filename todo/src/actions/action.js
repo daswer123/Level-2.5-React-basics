@@ -1,3 +1,9 @@
+const onCategoryLoaded = () =>{
+    return {
+        type : "ON_CATEGORY_LOADED"
+    }
+}
+
 const categoryLoaded = (categories) => {
     return {
         type: "CATEGORY_LOADED",
@@ -70,5 +76,6 @@ export {
     postCreated,
     CategoryCreated,
     CategoryDelete,
-    ChangeCategoryName
+    ChangeCategoryName,
+    onCategoryLoaded
 }

@@ -16,7 +16,7 @@ class ColorList extends Component{
                if(this.props.activeColor == color){
                     return <ColorItem  className="color-circles active"
                     onActiveColor={this.props.onActiveColor}
-                    color = {color} 
+                    color = {color}
                     key={`${color}-${id}`}/>
                }
                return <ColorItem  className="color-circles" onActiveColor={this.props.onActiveColor} color = {color} key={`${color}-${id}`}/>

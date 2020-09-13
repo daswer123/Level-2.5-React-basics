@@ -1,23 +1,37 @@
 const initialState = {
+    loading : true,
     posts : [],
     categories : [],
     activeCategory : "",
-    colorPick : ["#C9D1D3","#42B883","#64C4ED","#FFBBCC","#B6E6BD","#C355F5","#09011A","#FF6464"]
+    colorPick : ["#C9D1D3","#42B883","#64C4ED","#FFBBCC","#B6E6BD","#C355F5","#09011A","#FF6464","random"]
 
 }
 
 const reducer = (state = initialState,action) => {
     switch(action.type){
+        case "ON_CATEGORY_LOADED":
+            return {
+                loading : false
+            }
+
         case "CATEGORY_LOADED":
+            let newArrayCategories = [];
+            for (let key in action.payload){
+                newArrayCategories.unshift(action.payload[key])
+            }
             return {
                 ...state,
-                categories : action.payload
+                categories : newArrayCategories
             }
 
         case "POSTS_LOADED":
+            let newArrayPosts = [];
+            for (let key in action.payload){
+                newArrayPosts.unshift(action.payload[key])
+            }
             return {
                 ...state,
-                posts : action.payload
+                posts : newArrayPosts
             }
 
         case "SELECTED_CATEGORY":
@@ -85,7 +99,6 @@ const reducer = (state = initialState,action) => {
         case "CHANGE_CATEGORY_NAME":
             const categoryWithNewName = action.payload;
             const OldCategoryIndex = state.categories.findIndex(category => category.id == categoryWithNewName.id)
-            console.log(OldCategoryIndex,categoryWithNewName)
 
             return {
                 ...state,

@@ -6,14 +6,16 @@
 .color-circles{
     padding: 0;
     margin: 0;
-    margin-right: 5px;
+    margin-right: 6px;
     width: 15px;
     height: 15px;
     border: 0;
-
+    cursor: pointer;
     border-radius: 50%;
+    font-size: 10px;
 }
 
 .active {
-    border: 2px solid #525252;
+    border: 2px solid #fcfcfc;
+    font-size: 8px;
 }

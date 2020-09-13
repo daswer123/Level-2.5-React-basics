@@ -8,6 +8,7 @@ import "./task.css";
 
 class Task extends Component{
 
+
     componentDidMount(){
     }
 
@@ -36,6 +37,7 @@ class Task extends Component{
         TodoInfo.deleteTask(id)
     }
 
+    
     render(){
     const {label,category,id,complited,postDelete} = this.props
     let completeStyle = "complited-button"
@@ -45,15 +47,15 @@ class Task extends Component{
     }
 
     return (
-        <ListItem 
-        className={`post-${category} post-${category}-${id}`}
+        <li       
+        className={`task-item post-${category}-${id}`}
         >
                 <label>
-                    <button type="button" onClick= {() => this.ToggleTaskStatus()} className={completeStyle} />
-                    {label}
+                    <button className="task-item-complite" type="button" onClick= {() => this.ToggleTaskStatus()} className={completeStyle} />
+                    <p>{label}</p>
                 </label>
-                <button type="button" onClick={() => this.deleteOneTask()}>Удалить</button>
-        </ListItem>
+                <button className={`task-item-delete`} type="button" onClick={() => this.deleteOneTask()}>Удалить</button>
+        </li>
     )
     }
 }

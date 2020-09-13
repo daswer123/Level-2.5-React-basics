@@ -1,10 +1,11 @@
 import React,{Component} from "react";
 import {List,Button} from "@material-ui/core";
 import {connect} from "react-redux";
-import {categoryLoaded,selectedCategory,CategoryDelete} from "../../actions/action";
+import {categoryLoaded,selectedCategory,CategoryDelete,onCategoryLoaded} from "../../actions/action";
 import withTaskContext from "../hoc";
 import Category from "../category"
 import AddNewCategory from "../addNewCategory"
+import "./categoryList.css"
 
 class CategoryList extends Component{
     state = {
@@ -13,12 +14,16 @@ class CategoryList extends Component{
     }
 
     componentDidMount(){
-        console.log(AddNewCategory)
-        const {categoryLoaded,TodoInfo} = this.props;
+        
+        const {categoryLoaded,TodoInfo,onCategoryLoaded} = this.props;
         const Todo = new TodoInfo();
         Todo.getAllCategories()
-        .then(result => categoryLoaded(result))
+        .then(result => {
+            categoryLoaded(result)
+        })
+        const {categories} = this.props;
     }
+
 
     onCreateNewCategory(){
         this.setState({
@@ -48,22 +53,37 @@ class CategoryList extends Component{
     }
 
     render() {
-        const {categories,selectedCategory,activeCategory} = this.props
+        const {categories,selectedCategory,activeCategory,loading} = this.props
 
         const addCategoryBtn = () => {
             if (this.state.createNewCategory){
                 return <AddNewCategory onCreateNewCategory={() => this.onCreateNewCategory()}/>
             } 
-            return <button 
+            return <button className="create-new-category--btn" 
             type="button"
             onClick={() => this.onCreateNewCategory()}
-            >Добавить новую папку</button>
+            >Добавить папку</button>
+        }
+
+        // if (loading){
+        //     return <h2>Загрузка</h2>
+        // }
+
+        if (categories.length === 0 ){
+
+        if (this.state.createNewCategory){
+                return <AddNewCategory onCreateNewCategory={() => this.onCreateNewCategory()}/>
+            } 
+          return  <button className="create-new-category--btn before-all-new" 
+            type="button"
+            onClick={() => this.onCreateNewCategory()}
+            >Добавить папку</button>
         }
 
         return(
             <>
             <Button color="primary" onClick={() => selectedCategory("")}>Все задачи</Button>
-            <List>
+            <ul className="category-list">
                 {categories.map(category => {
 
                     if (typeof(category) === "undefind"){
@@ -72,18 +92,19 @@ class CategoryList extends Component{
 
                     if (category.label == activeCategory){
                         return (
-                            <Category {...category} key={`${category.label}-${category.id}`}>
-                                <button 
+                            <Category {...category} key={`${category.label}-${category.id}`} 
+                                className="category-item category-item-active">
+                                <button className="category--delete-btn"
                                 key={`${category}-btn ${category}-${category.id}-btn`} type="button"
                                 onClick={() => this.onDeleteCategory(category.label,category.id)}
                                 >Удалить</button>
                             </Category>
                         )
                     }
-                    return <Category {...category} key={`${category.label}-${category.id}`}/>
+                    return <Category {...category} key={`${category.label}-${category.id}`} className="category-item"/>
                 })}
              {addCategoryBtn()}
-            </List>
+            </ul>
             </>
         )
     }

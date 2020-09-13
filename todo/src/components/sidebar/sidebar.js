@@ -3,10 +3,9 @@ import CategoryList from "../categoryList/categoryList";
 
 const Sidebar = () => {
     return (
-    <>
-        <h1>This is SideBar</h1>
+    <section className="sidebar-content" >
         <CategoryList/>
-    </>
+    </section>
     )
 }
 

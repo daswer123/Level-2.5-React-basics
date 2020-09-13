@@ -3,6 +3,7 @@ import withTaskContext from "../hoc";
 import {connect} from "react-redux";
 import {postCreated} from "../../actions/action";
 import {createUnicId} from "../../services/service";
+import "./addNewTask.css";
 
 class AddNewTask extends Component{
     
@@ -20,8 +21,7 @@ class AddNewTask extends Component{
             alert("Пожалуйста введите текст");
             return
         }
-
-        console.log(posts,createUnicId(posts))
+        
         const data = {
             label : this.state.text,
             category : ActiveCategory,
@@ -46,7 +46,7 @@ class AddNewTask extends Component{
     let {onTaskCreate} = this.props;
     return (
         <form className="add-form" onSubmit={(e) => this.onAddTask(e)}>
-            <input className="add-form-input" type="text" name="label" onInput={(e) => this.onChangeText(e)}/>
+            <input className="add-form-input" autoFocus  placeholder="Текст задачи" type="text" name="label" onInput={(e) => this.onChangeText(e)}/>
             <div className="add-form-buttons">
                 <button className="add-form-add" type="submit">Добавить</button>
                 <button className="add-form-cancel" type="button" onClick={() => onTaskCreate()}>Отменить</button>

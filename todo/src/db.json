@@ -1,36 +1,11 @@
 {
-  "tasks": [
-    {
-      "label": "Кукушка",
-      "category": "frontend",
-      "complited": true,
-      "id": 9
-    },
-    {
-      "label": "Кукушка",
-      "category": "frontend",
-      "complited": false,
-      "id": 11
-    },
-    {
-      "label": "Кукушка",
-      "category": "pokupki",
-      "complited": false,
-      "id": 14
-    }
-  ],
+  "tasks": [],
   "categories": [
     {
-      "label": "frontend",
-      "name": "Фронтенд",
-      "color": "#FF99CC",
+      "name": "Privet",
+      "label": "Privet",
+      "color": "#000000",
       "id": 1
-    },
-    {
-      "color": "#CC6699",
-      "label": "pokupki",
-      "id": 2,
-      "name": "Покупка"
     }
   ]
 }

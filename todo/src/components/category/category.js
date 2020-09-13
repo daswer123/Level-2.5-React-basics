@@ -1,20 +1,23 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ListItem,Button} from "@material-ui/core";
 import {selectedCategory} from "../../actions/action";
 import "./category.css"
 
-const Category = ({label,color,name,selectedCategory,children,id}) => {
-    console.log(id)
+const Category = ({label,color,selectedCategory,children,id,className,name}) => {
+
+    if (name.length >= 14){
+        name = name.slice(0,15)
+        name += "..."
+    }
     return (
-        <ListItem className="catogory-item">
+        <li className={className} onClick={() => selectedCategory(label) }>
             <span className="color-circle" style={{backgroundColor : color}}/>
-            <Button  
+            <p 
+            className= "category-btn"
             style={{fontWeight : "bold"}}
-            onClick={() => selectedCategory(label) }
-            >{name}</Button>
+            >{name}</p>
             {children}
-        </ListItem>
+        </li>
     )
 }
 

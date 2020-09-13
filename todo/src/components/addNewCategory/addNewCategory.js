@@ -5,6 +5,7 @@ import cyrllicToTranslit from "cyrillic-to-translit-js";
 import {createUnicId} from "../../services/service"
 import {CategoryCreated} from "../../actions/action"
 import ColorList from "../colorList";
+import "./addNewCategory.css"
 
 
 class AddNewCategory extends Component{
@@ -12,7 +13,7 @@ class AddNewCategory extends Component{
 
     state = {
         text : "",
-        activeColor : ""
+        activeColor : "random"
     }
 
 
@@ -35,12 +36,17 @@ class AddNewCategory extends Component{
             return
         }
 
-        // let color = `#${Math.floor(Math.random()*999999+100000)}`
+        // let color = 
 
         const data = {
             name : text,
-            color : activeColor,
             id : createUnicId(categories)
+        }
+
+        if (activeColor === "random"){
+            data.color = `#${Math.floor(Math.random()*999999+100000)}`
+        } else {
+            data.color = activeColor
         }
 
         data.label = `${cyrllicToTranslit().transform(text,"-")}-${data.id}`
@@ -54,7 +60,6 @@ class AddNewCategory extends Component{
     }
 
     onInput(e){
-        console.log(e.target.value)
         this.setState({
             text : e.target.value
         })
@@ -64,16 +69,21 @@ class AddNewCategory extends Component{
 
     const {onCreateNewCategory} = this.props
     return (
-        <>
-            <form action="#" onSubmit={(e) => this.onSubmitForm(e)}>
+        <section className= "add-new-category--block">
+            <button className="create-new-category--btn" 
+            type="button"
+            onClick={onCreateNewCategory}
+            >Добавить папку</button>
+
+            <form action="#" onSubmit={(e) => this.onSubmitForm(e)} className="add-new-category--form">
                 <button onClick={onCreateNewCategory} className="close-add-category">Закрыть</button>
-                <input onInput={(e) => this.onInput(e)} type="text" name="category-name"/>
+                <input onInput={(e) => this.onInput(e)} type="text" name="category-name" placeholder="Название папки"/>
                 <div className="color-type">
                     <ColorList onActiveColor={(color) => this.onActiveColor(color)} activeColor={this.state.activeColor}/>
                 </div>
-                <button type="submit">Добавить</button>
+                <button type="submit" className="add-new-category-btn">Добавить</button>
             </form>
-        </>
+        </section>
     )
     }
 }

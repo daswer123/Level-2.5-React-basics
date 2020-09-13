@@ -10,11 +10,6 @@ class MainContent extends Component{
         createPost : false
     }
 
-    componentDidMount(){
-    }
-
-    
-
     onTaskCreate = () => {
         this.setState({
             createPost : !this.state.createPost
@@ -25,11 +20,8 @@ class MainContent extends Component{
     returnTaskList(category,editable = false){
         
         if (typeof(category) === "undefined"){
-            return <p>No content here</p>
+            return <p>В этой папке ничего нет</p>
         }
-
-    
-        console.log(category)
         return <TaskList 
             id = {category.id}
             name={category.name} 
@@ -44,15 +36,20 @@ class MainContent extends Component{
 
         const {categories,activeCategory} = this.props;
 
+
         if (categories.length === 0){
-            return <h2>Загрузка</h2>
+            return <h2 className="no-content">Задачи отсутствуют</h2>
         }
 
         const createPost = () => {
             if (this.state.createPost){
                 return <AddNewTask onTaskCreate={this.onTaskCreate}/>
             }
-            return <button type="button" onClick={() => this.onTaskCreate()}>Добавить новое дело</button>
+            return (
+            <div className="before-add-form">
+                <button type="button" className="add-new-post-before" onClick={() => this.onTaskCreate()}>Добавить новое дело</button>
+            </div>
+            )
         }
 
         const allCategories = () =>{
@@ -66,18 +63,17 @@ class MainContent extends Component{
         if (activeCategory){
             const category = categories.find(category => category.label === activeCategory);
             return (
-                <>
+                <section className="main-content-content">
                     {this.returnTaskList(category,true)}
                     {createPost()}
-                </>
+                </section>
                 )
         }
 
         return (
-            <>
-             <h1>This is Main Content</h1>
-             {allCategories()}
-            </>
+            <section className="main-content-content">
+                {allCategories()}
+             </section>
      )
     }
 
